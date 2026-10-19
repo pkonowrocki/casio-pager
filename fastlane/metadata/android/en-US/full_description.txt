@@ -1,0 +1,17 @@
+Casio Pager makes a Casio ABL-100WE (module 3565) beep when a message or call you care about arrives. The watch has no notification feature of its own, so the app holds a Bluetooth link to it and triggers its alert.
+
+<b>The catch:</b> the watch only accepts a link when it starts one itself. A long-press of its connect button gives a link that stays up for hours; the phone cannot wake the watch. Alerts reach the watch only while that link is held. The Status screen and a Quick Settings tile show whether it is.
+
+<b>Features</b>
+• Rules per app: off, everyone, or only the people you pick (WhatsApp, Messenger, SMS, calls, Telegram, Signal and many more)
+• Allow single group chats
+• Quiet hours, a quiet period after a beep so a burst of messages sounds once, calls repeat the beep while ringing
+• "Is it working?" card, Quick Settings tile and a Recent decisions screen that explains why a message did or did not beep
+• Watch settings from the phone (24 h, button sound, light, power saving, connection time, timer)
+• Steps from the watch's Life Log with a daily history, and the watch clock kept right
+• English, Deutsch, Français, Español, Polski
+
+<b>Privacy</b>
+Everything runs on your phone. Message text and contact names are never logged or sent anywhere, and there are no accounts, ads, analytics or network requests unless you choose to send diagnostics to a server of your own.
+
+<b>Unofficial.</b> Casio Pager is not affiliated with or endorsed by Casio. Only the ABL-100WE has been tested. Uninstall or disable Casio's own app first, because only one app can hold the watch.

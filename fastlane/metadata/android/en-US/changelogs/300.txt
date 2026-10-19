@@ -1,0 +1,1 @@
+First public release: rules per app and per group chat, Is it working? card, Quick Settings tile, Recent decisions, steps history, opt-in diagnostics and five languages. Requires Android 13 or newer.

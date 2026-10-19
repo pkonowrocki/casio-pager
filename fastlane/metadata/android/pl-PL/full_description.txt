@@ -1,0 +1,17 @@
+Casio Pager sprawia, że zegarek Casio ABL-100WE (moduł 3565) piszczy, gdy przyjdzie ważna wiadomość lub połączenie. Zegarek nie ma własnych powiadomień, więc aplikacja utrzymuje z nim połączenie Bluetooth i uruchamia jego alert.
+
+<b>Haczyk:</b> zegarek przyjmuje połączenie tylko wtedy, gdy sam je zainicjuje. Długie przytrzymanie przycisku połączenia daje link utrzymujący się godzinami; telefon nie może obudzić zegarka. Alerty docierają do zegarka tylko, gdy połączenie jest aktywne. Ekran Status i kafelek w szybkich ustawieniach pokazują, czy jest.
+
+<b>Funkcje</b>
+• Reguły dla każdej aplikacji: wyłączone, wszyscy albo tylko wybrane osoby (WhatsApp, Messenger, SMS, połączenia, Telegram, Signal i wiele innych)
+• Zezwalanie na pojedyncze czaty grupowe
+• Godziny ciszy, cisza po sygnale (seria wiadomości to jeden sygnał), powtarzanie sygnału podczas dzwonienia
+• Karta „Czy działa?”, kafelek szybkich ustawień i ekran Ostatnie decyzje, który tłumaczy, dlaczego wiadomość zabrzmiała lub nie
+• Ustawienia zegarka z telefonu (24 h, dźwięk przycisków, oświetlenie, oszczędzanie energii, czas połączenia, minutnik)
+• Kroki z Life Log zegarka z historią dzienną oraz poprawny czas na zegarku
+• English, Deutsch, Français, Español, Polski
+
+<b>Prywatność</b>
+Wszystko działa na telefonie. Treść wiadomości i nazwy kontaktów nigdy nie trafiają do logów ani nigdzie nie są wysyłane. Brak kont, reklam, analityki i ruchu sieciowego, chyba że sam wybierzesz wysyłanie diagnostyki na własny serwer.
+
+<b>Nieoficjalna.</b> Casio Pager nie jest powiązany z Casio ani przez Casio zatwierdzony. Przetestowano tylko model ABL-100WE. Najpierw odinstaluj lub wyłącz aplikację Casio, bo tylko jedna aplikacja może obsługiwać zegarek.
