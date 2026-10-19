@@ -4,7 +4,23 @@ updates:
     directory: /android
     schedule:
       interval: weekly
+    open-pull-requests-limit: 2
+    groups:
+      gradle-dependencies:
+        patterns: ["*"]
+    ignore:
+      # The build tool chain moves together (AGP, Kotlin, Compose compiler, Gradle); bump it by hand.
+      - dependency-name: "com.android.application"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "org.jetbrains.kotlin.android"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "gradle-wrapper"
+        update-types: ["version-update:semver-major"]
   - package-ecosystem: github-actions
     directory: /
     schedule:
       interval: weekly
+    open-pull-requests-limit: 2
+    groups:
+      actions:
+        patterns: ["*"]
