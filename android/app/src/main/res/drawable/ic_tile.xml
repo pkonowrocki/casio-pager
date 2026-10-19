@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Monochrome watch for the quick settings tile; the system tints it. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:fillType="evenOdd"
+        android:pathData="M9,2h6l0.8,3.4A7,7 0 0,1 19,11.5a7,7 0 0,1 -3.2,6.1L15,22H9l-0.8,-4.4A7,7 0 0,1 5,11.5a7,7 0 0,1 3.2,-6.1L9,2zM12,7.5a4,4 0 1,0 0,8a4,4 0 1,0 0,-8zM11.4,9.2v2.6l1.9,1.1l0.6,-0.9l-1.4,-0.8V9.2h-1.1z" />
+</vector>

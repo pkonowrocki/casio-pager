@@ -1,0 +1,17 @@
+# Build output and local files
+.gradle/
+build/
+local.properties
+*.iml
+.idea/
+captures/
+
+# Never commit: packages, signing keys and secrets
+*.apk
+*.aab
+*.apkm
+*.xapk
+*.keystore
+*.jks
+.env
+*.log

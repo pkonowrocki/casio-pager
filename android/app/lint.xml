@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<lint>
+    <!-- Dependency bumps are handled by Dependabot (.github/dependabot.yml), not by lint warnings on every build. -->
+    <issue id="GradleDependency" severity="ignore" />
+    <!-- Casio Pager is not distributed through Google Play. Asking the user to exempt it from battery optimisation is
+         what keeps the Bluetooth link service alive; the request is explained on the setup screen and optional. -->
+    <issue id="BatteryLife" severity="ignore" />
+    <!-- allowBackup=false is deliberate (the watch address and diagnostics server must never reach a cloud backup);
+         data extraction rules add nothing when backup is off. -->
+    <issue id="DataExtractionRules" severity="ignore" />
+    <!-- SharedPreferences.edit {} KTX helpers would add a dependency for no benefit. -->
+    <issue id="UseKtx" severity="ignore" />
+    <!-- The launcher icon is a plain vector; a themed monochrome variant is a nice-to-have, tracked as an issue. -->
+    <issue id="MonochromeLauncherIcon" severity="ignore" />
+</lint>
