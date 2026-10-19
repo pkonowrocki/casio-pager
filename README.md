@@ -1,4 +1,10 @@
-# Casio Pager
+<p align="center">
+  <img src="docs/images/icon.svg" alt="Casio Pager icon" width="128" height="128">
+</p>
+
+<h1 align="center">Casio Pager</h1>
+
+<p align="center">Make your Casio ABL-100WE beep for the messages and calls you care about.</p>
 
 [![CI](https://github.com/pkonowrocki/casio-pager/actions/workflows/ci.yml/badge.svg)](https://github.com/pkonowrocki/casio-pager/actions/workflows/ci.yml)
 [![Licence: MIT](https://img.shields.io/badge/licence-MIT-blue.svg)](LICENSE)
@@ -62,8 +68,14 @@ Needs JDK 17 and the Android SDK (platform 36, build-tools 35). Details, release
 
 ## Screenshots
 
-<!-- TODO: add screenshots (Status, Rules, Watch, Settings, the Quick Settings tile) under docs/screenshots/ and
-     reference them here. The F-Droid listing uses fastlane/metadata/android/*/images/phoneScreenshots/. -->
+<p align="center">
+  <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/1_status.png" alt="Status" width="23%">
+  <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/2_rules.png" alt="Rules" width="23%">
+  <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/3_watch.png" alt="Watch settings" width="23%">
+  <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/4_settings.png" alt="Settings" width="23%">
+</p>
+
+Status, Rules, Watch and Settings.
 
 ## Licence
 
