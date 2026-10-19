@@ -6,7 +6,16 @@ The Android `versionCode` is `major * 10000 + minor * 100 + patch` (0.3.0 is 300
 
 ## [Unreleased]
 
-## [0.3.0] - not yet released
+## [0.3.1] - 2026-10-19
+
+A packaging release for F-Droid; no change in behaviour.
+
+### Changed
+- The release build is shrunk with R8 (code and resources): the APK is about 2 MB instead of 17 MB.
+- The extra "dependency metadata" block that the Android Gradle Plugin adds to the APK signing block is turned off,
+  as F-Droid requires.
+
+## [0.3.0] - 2026-10-19
 
 The first public release.
 

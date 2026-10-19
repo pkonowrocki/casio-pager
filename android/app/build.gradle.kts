@@ -12,8 +12,8 @@ android {
         targetSdk = 36
         // Bump both together before tagging v<versionName>. versionCode = major * 10000 + minor * 100 + patch.
         // Literal values on purpose: F-Droid reads them from this file. The release workflow checks them against the tag.
-        versionCode = 300
-        versionName = "0.3.0"
+        versionCode = 301
+        versionName = "0.3.1"
         // Loki push URL, from the LOKI_URL repository secret; empty means pushing is off until the user sets one
         buildConfigField("String", "LOKI_URL", "\"${System.getenv("LOKI_URL") ?: ""}\"")
     }
@@ -33,7 +33,16 @@ android {
     buildTypes {
         release {
             signingConfig = signingConfigs.findByName("release") ?: signingConfigs.getByName("debug")
+            // R8 shrinks the code and resources; F-Droid's APK check also looks for the R8 marker
+            isMinifyEnabled = true
+            isShrinkResources = true
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
+    }
+    // F-Droid rejects the extra "Dependency metadata" signing block that AGP adds by default
+    dependenciesInfo {
+        includeInApk = false
+        includeInBundle = false
     }
     buildFeatures {
         compose = true

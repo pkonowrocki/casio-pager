@@ -1,0 +1,1 @@
+Mniejsza aplikacja (ok. 2 MB) i zmiany w pakowaniu pod F-Droid. Bez zmian w działaniu.

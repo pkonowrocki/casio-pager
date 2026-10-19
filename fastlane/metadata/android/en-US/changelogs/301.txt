@@ -1,0 +1,1 @@
+Smaller download (about 2 MB) and packaging changes for F-Droid. No change in behaviour.
