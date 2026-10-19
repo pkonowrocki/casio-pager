@@ -6,19 +6,23 @@ metadata and the checklist for the maintainer. Nothing here has been submitted.
 
 ## Before submitting
 
-- [ ] The repository is **public** (F-Droid must be able to clone it).
-- [ ] The release tag exists and its build works from a clean checkout: `git clone`, `cd android`,
-      `./gradlew assembleRelease` (it is signed with the debug key locally; F-Droid re-signs).
-- [ ] `versionName` and `versionCode` in `android/app/build.gradle.kts` are literals matching the tag (they are, and the
+- [x] The repository is **public** (F-Droid must be able to clone it).
+- [x] The release tag `v0.3.0` exists and builds from a clean checkout (checked 2026-10-19: `git clone --branch v0.3.0`,
+      `cd android`, `./gradlew assembleRelease` with `ANDROID_HOME` set; signed with the debug key locally, F-Droid
+      re-signs). The unsigned build is the same size as the published APK, a good sign for reproducibility.
+- [x] `versionName` and `versionCode` in `android/app/build.gradle.kts` are literals matching the tag (they are, and the
       release workflow checks them).
-- [ ] Store text exists under `fastlane/metadata/android/<locale>/` (title, short and full description, changelog named
+- [x] Store text exists under `fastlane/metadata/android/<locale>/` (title, short and full description, changelog named
       after the versionCode). Add phone screenshots in `fastlane/metadata/android/<locale>/images/phoneScreenshots/`
       (PNG or JPG, 1.png, 2.png, ...) and an icon in `images/icon.png` if you want one in the listing.
-- [ ] Dependencies are free software only: AndroidX, Jetpack Compose, Kotlin coroutines. No Google Play Services, no
-      analytics or crash-reporting SDKs. (`./gradlew :app:dependencies` shows the tree.)
-- [ ] The licence file (`LICENSE`, MIT) is in the repository root.
+- [x] Dependencies are free software only: AndroidX, Jetpack Compose, Kotlin coroutines (and the Guava
+      `listenablefuture` stub). No Google Play Services, no analytics or crash-reporting SDKs. The release APK contains
+      no play, firebase, gms, crashlytics or analytics classes (checked). `./gradlew :app:dependencies` shows the tree.
+- [x] The licence file (`LICENSE`, MIT) is in the repository root.
 
 ## Draft `metadata/app.pkonowrocki.casiopager.yml` for fdroiddata
+
+The same text is in `docs/fdroid/app.pkonowrocki.casiopager.yml`, ready to copy.
 
 ```yaml
 Categories:
@@ -65,6 +69,12 @@ push only talks to a server the user sets up.
    done by volunteers and can take days to weeks.
 6. Later releases: with `UpdateCheckMode: Tags` and `AutoUpdateMode: Version`, pushing a new tag is enough once the app
    is listed.
+
+## Known risk
+
+The app compiles against Android SDK 36 with Android Gradle Plugin 8.9.3. If F-Droid's build server does not have that
+platform or build tools yet, reviewers will say so in the merge request; the fix is a note in the metadata or waiting for
+the server image. `fdroid lint`/`fdroid build` were not run locally (the F-Droid server tools are not installed here).
 
 ## Things reviewers may raise
 

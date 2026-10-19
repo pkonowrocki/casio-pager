@@ -1,0 +1,26 @@
+Categories:
+  - Connectivity
+License: MIT
+AuthorName: Piotr Konowrocki
+WebSite: https://github.com/pkonowrocki/casio-pager
+SourceCode: https://github.com/pkonowrocki/casio-pager
+IssueTracker: https://github.com/pkonowrocki/casio-pager/issues
+Changelog: https://github.com/pkonowrocki/casio-pager/blob/HEAD/CHANGELOG.md
+
+AutoName: Casio Pager
+
+RepoType: git
+Repo: https://github.com/pkonowrocki/casio-pager.git
+
+Builds:
+  - versionName: 0.3.0
+    versionCode: 300
+    commit: v0.3.0
+    subdir: android/app
+    gradle:
+      - yes
+
+AutoUpdateMode: Version
+UpdateCheckMode: Tags
+CurrentVersion: 0.3.0
+CurrentVersionCode: 300
