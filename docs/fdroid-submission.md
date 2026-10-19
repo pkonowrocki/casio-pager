@@ -7,7 +7,7 @@ metadata and the checklist for the maintainer. Nothing here has been submitted.
 ## Before submitting
 
 - [x] The repository is **public** (F-Droid must be able to clone it).
-- [x] The release tag `v0.3.0` exists and builds from a clean checkout (checked 2026-10-19: `git clone --branch v0.3.0`,
+- [x] The release tag `v0.3.1` exists and builds from a clean checkout (checked 2026-10-19: `git clone --branch v0.3.0`,
       `cd android`, `./gradlew assembleRelease` with `ANDROID_HOME` set; signed with the debug key locally, F-Droid
       re-signs). The unsigned build is the same size as the published APK, a good sign for reproducibility.
 - [x] `versionName` and `versionCode` in `android/app/build.gradle.kts` are literals matching the tag (they are, and the
@@ -40,17 +40,17 @@ RepoType: git
 Repo: https://github.com/pkonowrocki/casio-pager.git
 
 Builds:
-  - versionName: 0.3.0
-    versionCode: 300
-    commit: v0.3.0
+  - versionName: 0.3.1
+    versionCode: 301
+    commit: 2f9d10c8790292fcd6382efc8f805b1e3351bdd5
     subdir: android/app
     gradle:
       - yes
 
 AutoUpdateMode: Version
 UpdateCheckMode: Tags
-CurrentVersion: 0.3.0
-CurrentVersionCode: 300
+CurrentVersion: 0.3.1
+CurrentVersionCode: 301
 ```
 
 The description comes from the fastlane files, so the metadata needs no `Summary` or `Description`. If reviewers ask for
@@ -59,7 +59,7 @@ push only talks to a server the user sets up.
 
 ## Steps for the maintainer
 
-1. Make the repository public and tag the release (`v0.3.0`; see `android/README.md`).
+1. Make the repository public and tag the release (`v0.3.1`; see `android/README.md`).
 2. Read the [F-Droid inclusion how-to](https://f-droid.org/docs/Inclusion_How-To/) and the
    [fdroiddata contributing guide](https://gitlab.com/fdroid/fdroiddata/-/blob/master/CONTRIBUTING.md).
 3. Fork <https://gitlab.com/fdroid/fdroiddata>, add the file above as `metadata/app.pkonowrocki.casiopager.yml`.
@@ -69,6 +69,12 @@ push only talks to a server the user sets up.
    done by volunteers and can take days to weeks.
 6. Later releases: with `UpdateCheckMode: Tags` and `AutoUpdateMode: Version`, pushing a new tag is enough once the app
    is listed.
+
+## Pipeline result
+
+The fdroiddata merge request (https://gitlab.com/fdroid/fdroiddata/-/merge_requests/53300) passes every job (lint, rewritemeta,
+check apk, build) with 0.3.1. Version 0.3.0 failed `check apk` (R8 marker, dependency metadata block) and `rewritemeta`
+(the `Binaries` line format), which is why 0.3.1 exists.
 
 ## Known risk
 

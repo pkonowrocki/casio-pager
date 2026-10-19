@@ -13,14 +13,14 @@ RepoType: git
 Repo: https://github.com/pkonowrocki/casio-pager.git
 
 Builds:
-  - versionName: 0.3.0
-    versionCode: 300
-    commit: v0.3.0
+  - versionName: 0.3.1
+    versionCode: 301
+    commit: 2f9d10c8790292fcd6382efc8f805b1e3351bdd5
     subdir: android/app
     gradle:
       - yes
 
 AutoUpdateMode: Version
 UpdateCheckMode: Tags
-CurrentVersion: 0.3.0
-CurrentVersionCode: 300
+CurrentVersion: 0.3.1
+CurrentVersionCode: 301
