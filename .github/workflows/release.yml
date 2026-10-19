@@ -1,0 +1,85 @@
+name: Release
+
+# Pushing a tag v<major>.<minor>.<patch> builds, signs and publishes the APK as a GitHub Release.
+# Bump versionName and versionCode in android/app/build.gradle.kts first: the tag must match them.
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: read
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  release:
+    name: Signed release APK
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    permissions:
+      contents: write # to create the GitHub Release
+    defaults:
+      run:
+        working-directory: android
+    env:
+      TAG: ${{ github.ref_name }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check the tag against the version in the build file
+        run: |
+          [[ "$TAG" =~ ^v([0-9]+)\.([0-9]+)\.([0-9]+)$ ]] || { echo "::error::Tag $TAG is not v<major>.<minor>.<patch>"; exit 1; }
+          EXPECTED_CODE=$(( ${BASH_REMATCH[1]} * 10000 + ${BASH_REMATCH[2]} * 100 + ${BASH_REMATCH[3]} ))
+          NAME="$(grep -oP 'versionName = "\K[^"]+' app/build.gradle.kts)"
+          CODE="$(grep -oP 'versionCode = \K[0-9]+' app/build.gradle.kts)"
+          [ "$NAME" = "${TAG#v}" ] || { echo "::error::versionName is $NAME in app/build.gradle.kts but the tag is ${TAG#v}. Bump it and re-tag."; exit 1; }
+          [ "$CODE" = "$EXPECTED_CODE" ] || { echo "::error::versionCode is $CODE but $EXPECTED_CODE is expected for $TAG (major*10000 + minor*100 + patch)."; exit 1; }
+
+      - name: Require the signing key
+        env:
+          KEYSTORE_B64: ${{ secrets.ANDROID_KEYSTORE_B64 }}
+        run: |
+          [ -n "$KEYSTORE_B64" ] || { echo "::error::The ANDROID_KEYSTORE_B64 secret is not set; refusing to publish a debug-signed APK."; exit 1; }
+          echo "$KEYSTORE_B64" | base64 -d > "$RUNNER_TEMP/release.keystore"
+          echo "ANDROID_KEYSTORE_PATH=$RUNNER_TEMP/release.keystore" >> "$GITHUB_ENV"
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Install Android SDK packages
+        run: |
+          SDK="${ANDROID_HOME:-/usr/local/lib/android/sdk}"
+          SDKMANAGER="$(find "$SDK/cmdline-tools" -path '*/bin/sdkmanager' 2>/dev/null | sort | tail -1)"
+          [ -n "$SDKMANAGER" ] || SDKMANAGER="$(find "$SDK" -name sdkmanager 2>/dev/null | head -1)"
+          test -x "$SDKMANAGER" || { echo "::error::sdkmanager not found under $SDK"; exit 1; }
+          echo "ANDROID_HOME=$SDK" >> "$GITHUB_ENV"
+          yes | "$SDKMANAGER" --licenses > /dev/null || true
+          "$SDKMANAGER" "platforms;android-36" "build-tools;35.0.0"
+
+      - uses: gradle/actions/setup-gradle@v4
+
+      - name: Tests, lint and signed release APK
+        env:
+          ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          ANDROID_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+          ANDROID_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
+        run: ./gradlew testDebugUnitTest lintDebug assembleRelease
+
+      - name: Verify the signature and name the files
+        run: |
+          APK="app/build/outputs/apk/release/app-release.apk"
+          "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --print-certs "$APK" | tee "$RUNNER_TEMP/certs.txt"
+          if grep -qi "Android Debug" "$RUNNER_TEMP/certs.txt"; then echo "::error::The APK is signed with the debug key."; exit 1; fi
+          cp "$APK" "casio-pager-${TAG}.apk"
+          sha256sum "casio-pager-${TAG}.apk" > SHA256SUMS
+
+      - name: Publish the GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "$TAG" "casio-pager-${TAG}.apk" SHA256SUMS \
+            --title "Casio Pager ${TAG}" --generate-notes --verify-tag

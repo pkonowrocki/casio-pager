@@ -1,0 +1,39 @@
+name: Bug report
+description: Something does not work as expected
+labels: [bug]
+body:
+  - type: input
+    id: version
+    attributes:
+      label: App version
+      description: Settings > About shows it.
+    validations:
+      required: true
+  - type: input
+    id: phone
+    attributes:
+      label: Phone model and Android version
+      placeholder: Pixel 7, Android 15
+    validations:
+      required: true
+  - type: input
+    id: watch
+    attributes:
+      label: Watch model
+      description: Only the ABL-100WE (module 3565) is supported; say if you use another.
+      placeholder: Casio ABL-100WE
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: What happened
+      description: What you did, what you expected, what happened instead. Did you long-press the watch's connect button, and for how long did the link hold?
+    validations:
+      required: true
+  - type: textarea
+    id: log
+    attributes:
+      label: Log
+      description: Settings > Logs > Share. It contains no message text or names, but skim it before pasting.
+      render: text
